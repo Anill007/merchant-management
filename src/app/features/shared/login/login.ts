@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
@@ -17,15 +17,15 @@ export class Login {
 
   email = '';
   password = '';
-  loading = false;
+  loading = signal(false);
   errorMessage = '';
 
   login(): void {
-    if (this.loading) {
+    if (this.loading()) {
       return;
     }
 
-    this.loading = true;
+    this.loading.set(true);
     this.errorMessage = '';
 
     this.auth.login({
@@ -34,7 +34,7 @@ export class Login {
     })
       .pipe(
         finalize(() => {
-          this.loading = false;
+          this.loading.set(false);
         })
       )
       .subscribe({
