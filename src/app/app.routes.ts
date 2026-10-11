@@ -2,16 +2,18 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
     {
-        path: 'sign-in',
-        loadComponent: () => import('./features/auth/sign-in/sign-in').then(m => m.SignIn),
+        path: '',
+        redirectTo: 'application-review',
+        pathMatch: 'full'
     },
     {
-        path: '',
-        redirectTo: 'sign-in',
-        pathMatch: 'full',
+        path: 'application-review',
+        loadComponent: () => import('./features/shared/application-review/application-review')
+            .then(m => m.ApplicationReview),
     },
     {
         path: '**',
-        redirectTo: 'sign-in',
-    },
+        loadComponent: () => import('./features/shared/page-404/page-404')
+            .then(m => m.Page404)
+    }
 ];
