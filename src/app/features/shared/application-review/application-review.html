@@ -5,9 +5,18 @@
             <p>Manage and review merchant registration requests.</p>
         </div>
 
-        <span class="total-badge">
-            {{ applications.length }} applications
-        </span>
+        <div class="header-actions">
+            @if (auth.hasPermission('merchant.create')) {
+            <button mat-flat-button color="primary" class="create-button" (click)="createApplication()">
+                <mat-icon>add</mat-icon>
+                Create New
+            </button>
+            }
+
+            <span class="total-badge">
+                {{ applications.length }} applications
+            </span>
+        </div>
     </header>
 
     <section class="table-card">

@@ -67,7 +67,6 @@ export class ApplicationReview implements AfterViewInit {
   public auth = inject(AuthService);
 
   applications = this.getApplicationsForCurrentUser();
-
   dataSource = new MatTableDataSource<MerchantApplication>(
     this.applications
   );
@@ -81,7 +80,9 @@ export class ApplicationReview implements AfterViewInit {
 
     switch (user.role) {
       case 'sales':
-        return applications.filter(app => app.createdBy === user.id);
+        return applications.filter(
+          app => app.reviewer === null && app.createdBy === user.id
+        );
 
       case 'reviewer':
         return applications.filter(app => app.reviewer === user.id);
@@ -167,6 +168,10 @@ export class ApplicationReview implements AfterViewInit {
 
   get filteredApplications(): number {
     return this.dataSource.filteredData.length;
+  }
+
+  createApplication(): void {
+    this.router.navigate(['/merchant-applications', 'new']);
   }
 
   editApplication(application: MerchantApplication): void {

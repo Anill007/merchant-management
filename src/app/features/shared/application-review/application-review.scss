@@ -42,6 +42,27 @@
     font-weight: 600;
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.create-button {
+    border-radius: 8px !important;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+
+    mat-icon {
+        width: 18px;
+        height: 18px;
+        margin-right: 4px;
+        font-size: 18px;
+        line-height: 18px;
+    }
+}
+
 .table-card {
     overflow: hidden;
     border: 1px solid #e2e8f0;

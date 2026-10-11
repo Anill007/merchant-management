@@ -8,7 +8,7 @@ export const applications: MerchantApplication[] = [
         status: 'UNDER_REVIEW',
         address: 'Kathmandu, Nepal',
         reviewer: null,
-        createdBy: 1,
+        createdBy: 4,
     },
     {
         id: 'APP-1002',
@@ -17,7 +17,7 @@ export const applications: MerchantApplication[] = [
         status: 'UNDER_REVIEW',
         address: 'Pokhara, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1003',
@@ -25,8 +25,8 @@ export const applications: MerchantApplication[] = [
         email: 'hello@globalmart.com',
         status: 'REJECTED',
         address: 'Lalitpur, Nepal',
-        reviewer: 1,
-        createdBy: 2,
+        reviewer: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1004',
@@ -34,8 +34,8 @@ export const applications: MerchantApplication[] = [
         email: 'sales@sunrise.com',
         status: 'UNDER_REVIEW',
         address: 'Bhaktapur, Nepal',
-        reviewer: 2,
-        createdBy: 2,
+        reviewer: 3,
+        createdBy: 5,
     },
     {
         id: 'APP-1005',
@@ -44,7 +44,7 @@ export const applications: MerchantApplication[] = [
         status: 'UNDER_REVIEW',
         address: 'Chitwan, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1006',
@@ -53,7 +53,7 @@ export const applications: MerchantApplication[] = [
         status: 'UNDER_REVIEW',
         address: 'Biratnagar, Nepal',
         reviewer: null,
-        createdBy: 1,
+        createdBy: 4,
     },
     {
         id: 'APP-1007',
@@ -61,8 +61,8 @@ export const applications: MerchantApplication[] = [
         email: 'info@greenvalley.com',
         status: 'UNDER_REVIEW',
         address: 'Butwal, Nepal',
-        reviewer: 1,
-        createdBy: 2,
+        reviewer: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1008',
@@ -70,8 +70,8 @@ export const applications: MerchantApplication[] = [
         email: 'prime@example.com',
         status: 'REJECTED',
         address: 'Dharan, Nepal',
-        reviewer: 2,
-        createdBy: 2,
+        reviewer: 3,
+        createdBy: 5,
     },
     {
         id: 'APP-1009',
@@ -80,7 +80,7 @@ export const applications: MerchantApplication[] = [
         status: 'UNDER_REVIEW',
         address: 'Hetauda, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1010',
@@ -89,7 +89,7 @@ export const applications: MerchantApplication[] = [
         status: 'APPROVED',
         address: 'Nepalgunj, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1011',
@@ -97,8 +97,8 @@ export const applications: MerchantApplication[] = [
         email: 'nova@novaretail.com',
         status: 'UNDER_REVIEW',
         address: 'Janakpur, Nepal',
-        reviewer: 1,
-        createdBy: 2,
+        reviewer: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1012',
@@ -106,8 +106,8 @@ export const applications: MerchantApplication[] = [
         email: 'contact@bluepeak.com',
         status: 'UNDER_REVIEW',
         address: 'Dhangadhi, Nepal',
-        reviewer: 2,
-        createdBy: 1,
+        reviewer: 3,
+        createdBy: 4,
     },
     {
         id: 'APP-1013',
@@ -116,7 +116,7 @@ export const applications: MerchantApplication[] = [
         status: 'APPROVED',
         address: 'Bharatpur, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1014',
@@ -125,7 +125,7 @@ export const applications: MerchantApplication[] = [
         status: 'REJECTED',
         address: 'Patan, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1015',
@@ -133,8 +133,8 @@ export const applications: MerchantApplication[] = [
         email: 'support@digitalworld.com',
         status: 'REJECTED',
         address: 'Itahari, Nepal',
-        reviewer: 1,
-        createdBy: 2,
+        reviewer: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1016',
@@ -142,8 +142,8 @@ export const applications: MerchantApplication[] = [
         email: 'hello@freshbasket.com',
         status: 'UNDER_REVIEW',
         address: 'Birtamod, Nepal',
-        reviewer: 2,
-        createdBy: 2,
+        reviewer: 3,
+        createdBy: 5,
     },
     {
         id: 'APP-1017',
@@ -152,7 +152,7 @@ export const applications: MerchantApplication[] = [
         status: 'APPROVED',
         address: 'Tulsipur, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1018',
@@ -161,7 +161,7 @@ export const applications: MerchantApplication[] = [
         status: 'UNDER_REVIEW',
         address: 'Ghorahi, Nepal',
         reviewer: null,
-        createdBy: 1,
+        createdBy: 4,
     },
     {
         id: 'APP-1019',
@@ -169,8 +169,8 @@ export const applications: MerchantApplication[] = [
         email: 'contact@evergreenfurniture.com',
         status: 'REJECTED',
         address: 'Damak, Nepal',
-        reviewer: 1,
-        createdBy: 2,
+        reviewer: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1020',
@@ -178,8 +178,8 @@ export const applications: MerchantApplication[] = [
         email: 'team@technova.com',
         status: 'APPROVED',
         address: 'Banepa, Nepal',
-        reviewer: 2,
-        createdBy: 2,
+        reviewer: 3,
+        createdBy: 5,
     },
     {
         id: 'APP-1021',
@@ -188,7 +188,7 @@ export const applications: MerchantApplication[] = [
         status: 'REJECTED',
         address: 'Kathmandu, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1022',
@@ -197,7 +197,7 @@ export const applications: MerchantApplication[] = [
         status: 'REJECTED',
         address: 'Pokhara, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1023',
@@ -205,8 +205,8 @@ export const applications: MerchantApplication[] = [
         email: 'info@redpandacrafts.com',
         status: 'APPROVED',
         address: 'Lalitpur, Nepal',
-        reviewer: 1,
-        createdBy: 2,
+        reviewer: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1024',
@@ -214,8 +214,8 @@ export const applications: MerchantApplication[] = [
         email: 'admin@horizonpharma.com',
         status: 'UNDER_REVIEW',
         address: 'Birgunj, Nepal',
-        reviewer: 2,
-        createdBy: 1,
+        reviewer: 3,
+        createdBy: 4,
     },
     {
         id: 'APP-1025',
@@ -224,7 +224,7 @@ export const applications: MerchantApplication[] = [
         status: 'REJECTED',
         address: 'Namche Bazaar, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1026',
@@ -233,7 +233,7 @@ export const applications: MerchantApplication[] = [
         status: 'UNDER_REVIEW',
         address: 'Baneswor, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1027',
@@ -241,8 +241,8 @@ export const applications: MerchantApplication[] = [
         email: 'hello@purenature.com',
         status: 'APPROVED',
         address: 'Ilam, Nepal',
-        reviewer: 1,
-        createdBy: 2,
+        reviewer: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1028',
@@ -250,8 +250,8 @@ export const applications: MerchantApplication[] = [
         email: 'support@nextgencomputers.com',
         status: 'UNDER_REVIEW',
         address: 'New Road, Kathmandu, Nepal',
-        reviewer: 2,
-        createdBy: 2,
+        reviewer: 3,
+        createdBy: 5,
     },
     {
         id: 'APP-1029',
@@ -260,7 +260,7 @@ export const applications: MerchantApplication[] = [
         status: 'APPROVED',
         address: 'Birgunj, Nepal',
         reviewer: null,
-        createdBy: 1,
+        createdBy: 4,
     },
     {
         id: 'APP-1030',
@@ -269,7 +269,7 @@ export const applications: MerchantApplication[] = [
         status: 'REJECTED',
         address: 'Bhaktapur, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1031',
@@ -277,8 +277,8 @@ export const applications: MerchantApplication[] = [
         email: 'ops@fasttracklogistics.com',
         status: 'UNDER_REVIEW',
         address: 'Kakarbhitta, Nepal',
-        reviewer: 1,
-        createdBy: 2,
+        reviewer: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1032',
@@ -286,8 +286,8 @@ export const applications: MerchantApplication[] = [
         email: 'contact@delightsupplies.com',
         status: 'UNDER_REVIEW',
         address: 'Butwal, Nepal',
-        reviewer: 2,
-        createdBy: 2,
+        reviewer: 3,
+        createdBy: 5,
     },
     {
         id: 'APP-1033',
@@ -296,7 +296,7 @@ export const applications: MerchantApplication[] = [
         status: 'APPROVED',
         address: 'Pokhara, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1034',
@@ -305,7 +305,7 @@ export const applications: MerchantApplication[] = [
         status: 'UNDER_REVIEW',
         address: 'Chitwan, Nepal',
         reviewer: null,
-        createdBy: 1,
+        createdBy: 4,
     },
     {
         id: 'APP-1035',
@@ -313,8 +313,8 @@ export const applications: MerchantApplication[] = [
         email: 'sales@easternagro.com',
         status: 'UNDER_REVIEW',
         address: 'Itahari, Nepal',
-        reviewer: 1,
-        createdBy: 2,
+        reviewer: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1036',
@@ -322,8 +322,8 @@ export const applications: MerchantApplication[] = [
         email: 'orders@brightfuture.com',
         status: 'REJECTED',
         address: 'Dhangadhi, Nepal',
-        reviewer: 2,
-        createdBy: 2,
+        reviewer: 3,
+        createdBy: 5,
     },
     {
         id: 'APP-1037',
@@ -332,7 +332,7 @@ export const applications: MerchantApplication[] = [
         status: 'UNDER_REVIEW',
         address: 'Dharan, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1038',
@@ -341,7 +341,7 @@ export const applications: MerchantApplication[] = [
         status: 'UNDER_REVIEW',
         address: 'Kirtipur, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1039',
@@ -349,8 +349,8 @@ export const applications: MerchantApplication[] = [
         email: 'contact@pioneerindustrial.com',
         status: 'UNDER_REVIEW',
         address: 'Hetauda, Nepal',
-        reviewer: 1,
-        createdBy: 2,
+        reviewer: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1040',
@@ -358,8 +358,8 @@ export const applications: MerchantApplication[] = [
         email: 'sales@sunbeamhome.com',
         status: 'APPROVED',
         address: 'Janakpur, Nepal',
-        reviewer: 2,
-        createdBy: 1,
+        reviewer: 3,
+        createdBy: 4,
     },
     {
         id: 'APP-1041',
@@ -368,7 +368,7 @@ export const applications: MerchantApplication[] = [
         status: 'UNDER_REVIEW',
         address: 'Lalitpur, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1042',
@@ -377,7 +377,7 @@ export const applications: MerchantApplication[] = [
         status: 'UNDER_REVIEW',
         address: 'Bharatpur, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1043',
@@ -385,8 +385,8 @@ export const applications: MerchantApplication[] = [
         email: 'info@vertexoffice.com',
         status: 'APPROVED',
         address: 'Biratnagar, Nepal',
-        reviewer: 1,
-        createdBy: 2,
+        reviewer: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1044',
@@ -394,8 +394,8 @@ export const applications: MerchantApplication[] = [
         email: 'contact@lotusbeauty.com',
         status: 'UNDER_REVIEW',
         address: 'Patan, Nepal',
-        reviewer: 2,
-        createdBy: 2,
+        reviewer: 3,
+        createdBy: 5,
     },
     {
         id: 'APP-1045',
@@ -404,7 +404,7 @@ export const applications: MerchantApplication[] = [
         status: 'UNDER_REVIEW',
         address: 'Ilam, Nepal',
         reviewer: null,
-        createdBy: 1,
+        createdBy: 4,
     },
     {
         id: 'APP-1046',
@@ -413,7 +413,7 @@ export const applications: MerchantApplication[] = [
         status: 'UNDER_REVIEW',
         address: 'Nepalgunj, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1047',
@@ -421,8 +421,8 @@ export const applications: MerchantApplication[] = [
         email: 'admin@cedarsupplies.com',
         status: 'UNDER_REVIEW',
         address: 'Tulsipur, Nepal',
-        reviewer: 1,
-        createdBy: 2,
+        reviewer: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1048',
@@ -430,8 +430,8 @@ export const applications: MerchantApplication[] = [
         email: 'hello@sparklegifts.com',
         status: 'REJECTED',
         address: 'Damak, Nepal',
-        reviewer: 2,
-        createdBy: 2,
+        reviewer: 3,
+        createdBy: 5,
     },
     {
         id: 'APP-1049',
@@ -440,7 +440,7 @@ export const applications: MerchantApplication[] = [
         status: 'UNDER_REVIEW',
         address: 'Banepa, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
     {
         id: 'APP-1050',
@@ -449,6 +449,6 @@ export const applications: MerchantApplication[] = [
         status: 'UNDER_REVIEW',
         address: 'Kathmandu, Nepal',
         reviewer: null,
-        createdBy: 2,
+        createdBy: 5,
     },
 ];
