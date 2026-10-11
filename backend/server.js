@@ -172,6 +172,14 @@ app.get("/api/auth/me", authenticateToken, (req, res) => {
 	res.json({ user: req.user });
 });
 
+app.get("/api/auth/reviewers", authenticateToken, (req, res) => {
+	const reviewers = users
+		.filter((u) => u.role === "reviewer")
+		.map((u) => ({ id: u.id, name: u.name }));
+
+	res.json({ reviewers });
+});
+
 
 app.listen(5000, () => {
 	console.log("Server running at http://localhost:5000");

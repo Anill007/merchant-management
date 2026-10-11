@@ -3,11 +3,13 @@ import {
   AfterViewInit,
   Component,
   inject,
+  OnInit,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -43,12 +45,15 @@ import { MerchantApplication } from './application-review.model';
   templateUrl: './application-review.html',
   styleUrl: './application-review.scss',
 })
-export class ApplicationReview implements AfterViewInit {
+export class ApplicationReview implements OnInit, AfterViewInit {
+  private readonly http = inject(HttpClient);
+
   displayedColumns: string[] = [
     'id',
     'name',
     'email',
     'status',
+    'reviewer',
     'address',
     'actions',
   ];
@@ -65,6 +70,13 @@ export class ApplicationReview implements AfterViewInit {
   ];
 
   public auth = inject(AuthService);
+
+  reviewers: { id: number; name: string }[] = [];
+  private reviewerMap = new Map<number, string>();
+
+  get isAdmin(): boolean {
+    return this.auth.currentUser?.role === 'admin';
+  }
 
   applications = this.getApplicationsForCurrentUser();
   dataSource = new MatTableDataSource<MerchantApplication>(
@@ -112,6 +124,7 @@ export class ApplicationReview implements AfterViewInit {
         application.email,
         application.status,
         application.address,
+        application.reviewerName ?? '',
       ].join(' ').toLowerCase();
 
       const matchesSearch = searchableText.includes(criteria.search);
@@ -133,6 +146,10 @@ export class ApplicationReview implements AfterViewInit {
     };
 
     this.dataSource.sortingDataAccessor = (application, property) => {
+      if (property === 'reviewer') {
+        return (application.reviewerName ?? '').toLowerCase();
+      }
+
       const value =
         application[property as keyof MerchantApplication];
 
@@ -144,6 +161,28 @@ export class ApplicationReview implements AfterViewInit {
         ? value.toLowerCase()
         : value;
     };
+  }
+
+  ngOnInit(): void {
+    this.http
+      .get<{ reviewers: { id: number; name: string }[] }>(
+        'http://localhost:5000/api/auth/reviewers'
+      )
+      .subscribe(response => {
+        this.reviewers = response.reviewers;
+        this.reviewerMap = new Map(
+          response.reviewers.map(r => [r.id, r.name])
+        );
+
+        this.applications = this.applications.map(app => ({
+          ...app,
+          reviewerName: app.reviewer
+            ? this.reviewerMap.get(app.reviewer) ?? undefined
+            : undefined,
+        }));
+
+        this.dataSource.data = [...this.applications];
+      });
   }
 
   ngAfterViewInit(): void {
@@ -205,5 +244,27 @@ export class ApplicationReview implements AfterViewInit {
 
     this.dataSource.data = [...this.applications];
     this.paginator?.firstPage();
+  }
+
+  assignReviewer(application: MerchantApplication, reviewerId: number | null): void {
+    const reviewerName = reviewerId
+      ? this.reviewerMap.get(reviewerId) ?? undefined
+      : undefined;
+
+    // Update local component list
+    this.applications = this.applications.map(app =>
+      app.id === application.id
+        ? { ...app, reviewer: reviewerId, reviewerName }
+        : app
+    );
+
+    // Keep the global mock array in sync
+    const globalApp = applications.find(a => a.id === application.id);
+    if (globalApp) {
+      globalApp.reviewer = reviewerId;
+      globalApp.reviewerName = reviewerName;
+    }
+
+    this.dataSource.data = [...this.applications];
   }
 }

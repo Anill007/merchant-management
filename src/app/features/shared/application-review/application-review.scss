@@ -140,7 +140,7 @@
 
 table {
     width: 100%;
-    min-width: 850px;
+    min-width: 1000px;
 }
 
 th.mat-mdc-header-cell {
@@ -295,6 +295,94 @@ mat-paginator {
 
 .status-unassigned .status-dot {
     background-color: #9ca3af;
+}
+
+/* Reviewer column */
+.reviewer-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #1e293b;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.reviewer-icon {
+    width: 16px !important;
+    height: 16px !important;
+    font-size: 16px !important;
+    line-height: 16px !important;
+    color: #64748b;
+}
+
+.reviewer-unassigned {
+    color: #94a3b8;
+    font-size: 12px;
+    font-style: italic;
+}
+
+/* Assign reviewer dropdown (admin only) */
+.assign-reviewer-field {
+    width: 160px;
+
+    &.mat-mdc-form-field {
+        margin: 0;
+        font-size: 12px;
+    }
+
+    .mat-mdc-text-field-wrapper {
+        padding: 0 8px 0 4px;
+    }
+
+    .mat-mdc-form-field-infix {
+        min-height: 34px;
+        padding: 4px 0;
+    }
+
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+        border-color: #e2e8f0;
+    }
+
+    &:hover .mdc-notched-outline__leading,
+    &:hover .mdc-notched-outline__notch,
+    &:hover .mdc-notched-outline__trailing {
+        border-color: #94a3b8;
+    }
+
+    .mat-mdc-form-field-subscript-wrapper {
+        display: none;
+    }
+
+    .mat-mdc-select-trigger {
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .mat-mdc-select-placeholder {
+        color: #94a3b8;
+        font-style: italic;
+    }
+}
+
+.assign-icon {
+    width: 16px !important;
+    height: 16px !important;
+    font-size: 16px !important;
+    line-height: 16px !important;
+    margin-right: 4px;
+    color: #64748b;
+}
+
+::ng-deep .mat-mdc-option .option-icon {
+    width: 18px !important;
+    height: 18px !important;
+    font-size: 18px !important;
+    line-height: 18px !important;
+    margin-right: 8px;
+    color: #64748b;
+    vertical-align: middle;
 }
 
 /* Responsive */

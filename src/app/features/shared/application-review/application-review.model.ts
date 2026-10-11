@@ -11,6 +11,7 @@ export interface MerchantApplication {
     status: string;
     address: string;
     reviewer: number | null;
+    reviewerName?: string;
     createdBy: number;
 
     ownerFirstName: string;

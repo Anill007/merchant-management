@@ -126,6 +126,49 @@
                     </td>
                 </ng-container>
 
+                <!-- Reviewer -->
+                <ng-container matColumnDef="reviewer">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Reviewer
+                    </th>
+
+                    <td mat-cell *matCellDef="let application">
+                        @if (isAdmin) {
+                        <mat-form-field appearance="outline" class="assign-reviewer-field"
+                            (click)="$event.stopPropagation()">
+
+                            <mat-icon matPrefix class="assign-icon">person_add</mat-icon>
+
+                            <mat-select [value]="application.reviewer"
+                                (selectionChange)="assignReviewer(application, $event.value)"
+                                placeholder="Assign">
+
+                                <mat-option [value]="null">
+                                    <mat-icon class="option-icon">person_off</mat-icon>
+                                    Unassigned
+                                </mat-option>
+
+                                @for (reviewer of reviewers; track reviewer.id) {
+                                <mat-option [value]="reviewer.id">
+                                    <mat-icon class="option-icon">person</mat-icon>
+                                    {{ reviewer.name }}
+                                </mat-option>
+                                }
+                            </mat-select>
+                        </mat-form-field>
+                        } @else {
+                            @if (application.reviewerName) {
+                            <span class="reviewer-name">
+                                <mat-icon class="reviewer-icon">person</mat-icon>
+                                {{ application.reviewerName }}
+                            </span>
+                            } @else {
+                            <span class="reviewer-unassigned">Unassigned</span>
+                            }
+                        }
+                    </td>
+                </ng-container>
+
                 <!-- Address -->
                 <ng-container matColumnDef="address">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>

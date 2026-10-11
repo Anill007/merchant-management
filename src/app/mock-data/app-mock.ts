@@ -5,7 +5,7 @@ export const applications: MerchantApplication[] = [
     {
         id: 'APP-1001',
         status: 'UNDER_REVIEW',
-        reviewer: null,
+        reviewer: 2,
         createdBy: 4,
         name: 'Everest Traders',
         email: 'contact@everest.com',
@@ -26,7 +26,7 @@ export const applications: MerchantApplication[] = [
     {
         id: 'APP-1002',
         status: 'UNDER_REVIEW',
-        reviewer: null,
+        reviewer: 3,
         createdBy: 5,
         name: 'Himalayan Store',
         email: 'info@himalayan.com',
@@ -68,7 +68,7 @@ export const applications: MerchantApplication[] = [
     {
         id: 'APP-1004',
         status: 'UNDER_REVIEW',
-        reviewer: null,
+        reviewer: 2,
         createdBy: 5,
         name: 'Sunrise Electronics',
         email: 'sales@sunrise.com',
@@ -131,7 +131,7 @@ export const applications: MerchantApplication[] = [
     {
         id: 'APP-1007',
         status: 'UNDER_REVIEW',
-        reviewer: null,
+        reviewer: 3,
         createdBy: 5,
         name: 'Green Valley Supplies',
         email: 'info@greenvalley.com',
@@ -194,7 +194,7 @@ export const applications: MerchantApplication[] = [
     {
         id: 'APP-1010',
         status: 'APPROVED',
-        reviewer: null,
+        reviewer: 2,
         createdBy: 5,
         name: 'Oceanic Imports',
         email: 'office@oceanic.com',
@@ -257,7 +257,7 @@ export const applications: MerchantApplication[] = [
     {
         id: 'APP-1013',
         status: 'APPROVED',
-        reviewer: null,
+        reviewer: 3,
         createdBy: 5,
         name: 'Golden Gate Enterprises',
         email: 'info@goldengate.com',
@@ -341,7 +341,7 @@ export const applications: MerchantApplication[] = [
     {
         id: 'APP-1017',
         status: 'APPROVED',
-        reviewer: null,
+        reviewer: 2,
         createdBy: 5,
         name: 'Metro Hardware',
         email: 'sales@metrohardware.com',
