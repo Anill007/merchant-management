@@ -1,0 +1,510 @@
+<div class="create-page">
+
+  <!-- ── Page header ──────────────────────────────────────────────────────── -->
+  <header class="page-header">
+    <button mat-icon-button type="button" class="back-btn" (click)="goBack()" aria-label="Go back">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="header-text">
+      <div class="title-row">
+        <h1>{{ pageTitle() }}</h1>
+        @if (isReview() && existingApp()) {
+        <span class="status-badge" [ngClass]="'status-' + existingApp()!.status.toLowerCase()">
+          <span class="status-dot"></span>
+          {{ existingApp()!.status.replace('_', ' ') }}
+        </span>
+        }
+      </div>
+      <p>{{ pageSubtitle() }}</p>
+    </div>
+  </header>
+
+  <!-- ── Review done banner ────────────────────────────────────────────────── -->
+  @if (reviewDone()) {
+  <div class="success-card" [class.success-card--rejected]="reviewDone() === 'REJECTED'">
+    <div class="success-icon" [class.success-icon--rejected]="reviewDone() === 'REJECTED'">
+      <mat-icon>{{ reviewDone() === 'APPROVED' ? 'check_circle' : 'cancel' }}</mat-icon>
+    </div>
+    <h2>Application {{ reviewDone() === 'APPROVED' ? 'Approved' : 'Rejected' }}</h2>
+    <p>The application status has been updated to <strong>{{ reviewDone() }}</strong>.</p>
+    <button mat-flat-button color="primary" class="back-home-btn" (click)="goBack()">
+      <mat-icon>list</mat-icon>
+      View All Applications
+    </button>
+  </div>
+  }
+
+  <!-- ── Create / Edit success banner ─────────────────────────────────────── -->
+  @if (submitted()) {
+  <div class="success-card">
+    <div class="success-icon">
+      <mat-icon>check_circle</mat-icon>
+    </div>
+    <h2>{{ isEdit() ? 'Application Updated!' : 'Application Submitted!' }}</h2>
+    <p>{{ isEdit()
+      ? 'The merchant application has been updated successfully.'
+      : 'The merchant application has been created and is now Under Review.' }}</p>
+    <div class="success-meta">
+      <span class="meta-item">
+        <mat-icon>description</mat-icon>
+        Document: <code>example.txt</code>
+      </span>
+      <span class="meta-item">
+        <mat-icon>image</mat-icon>
+        Image: <code>example.png</code>
+      </span>
+    </div>
+    <button mat-flat-button color="primary" class="back-home-btn" (click)="goBack()">
+      <mat-icon>list</mat-icon>
+      View All Applications
+    </button>
+  </div>
+  }
+
+  <!-- ── Stepper ────────────────────────────────────────────────────────────── -->
+  @if (!submitted() && !reviewDone()) {
+  <mat-stepper #stepper [linear]="!isReview()" class="app-stepper">
+
+    <!-- ── Step 1: Merchant Info ─────────────────────────────────────────── -->
+    <mat-step [stepControl]="isReview() ? null! : merchantForm" label="Merchant Info">
+      <form [formGroup]="merchantForm" class="step-form">
+
+        <div class="step-header">
+          <div class="step-icon">
+            <mat-icon>store</mat-icon>
+          </div>
+          <div>
+            <h2 class="step-title">Merchant Information</h2>
+            <p class="step-desc">Business contact and location details.</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+
+          <mat-form-field appearance="outline" class="col-full">
+            <mat-label>Merchant Name</mat-label>
+            <mat-icon matPrefix>business</mat-icon>
+            <input matInput formControlName="name" placeholder="e.g. Everest Traders" />
+            @if (fieldError(merchantForm, 'name')) {
+            <mat-error>{{ fieldError(merchantForm, 'name') }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <mat-icon matPrefix>phone</mat-icon>
+            <input matInput formControlName="phone" placeholder="+977-1-4567890" />
+            @if (fieldError(merchantForm, 'phone')) {
+            <mat-error>{{ fieldError(merchantForm, 'phone') }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Email Address</mat-label>
+            <mat-icon matPrefix>email</mat-icon>
+            <input matInput formControlName="email" placeholder="contact@business.com" type="email" />
+            @if (fieldError(merchantForm, 'email')) {
+            <mat-error>{{ fieldError(merchantForm, 'email') }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>City</mat-label>
+            <mat-icon matPrefix>location_city</mat-icon>
+            <input matInput formControlName="city" placeholder="e.g. Kathmandu" />
+            @if (fieldError(merchantForm, 'city')) {
+            <mat-error>{{ fieldError(merchantForm, 'city') }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>State / Province</mat-label>
+            <mat-icon matPrefix>map</mat-icon>
+            <input matInput formControlName="state" placeholder="e.g. Bagmati" />
+            @if (fieldError(merchantForm, 'state')) {
+            <mat-error>{{ fieldError(merchantForm, 'state') }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Country</mat-label>
+            <mat-icon matPrefix>public</mat-icon>
+            <input matInput formControlName="country" placeholder="e.g. Nepal" />
+            @if (fieldError(merchantForm, 'country')) {
+            <mat-error>{{ fieldError(merchantForm, 'country') }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Postal Code</mat-label>
+            <mat-icon matPrefix>markunread_mailbox</mat-icon>
+            <input matInput formControlName="postalCode" placeholder="e.g. 44600" />
+            @if (fieldError(merchantForm, 'postalCode')) {
+            <mat-error>{{ fieldError(merchantForm, 'postalCode') }}</mat-error>
+            }
+          </mat-form-field>
+
+        </div>
+
+        <div class="step-actions">
+          <span></span>
+          <button mat-flat-button color="primary" matStepperNext type="button"
+            [disabled]="!isReview() && merchantForm.invalid">
+            Next
+            <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- ── Step 2: Owner Details ──────────────────────────────────────────── -->
+    <mat-step [stepControl]="isReview() ? null! : ownerForm" label="Owner Details">
+      <form [formGroup]="ownerForm" class="step-form">
+
+        <div class="step-header">
+          <div class="step-icon">
+            <mat-icon>person</mat-icon>
+          </div>
+          <div>
+            <h2 class="step-title">Owner Details</h2>
+            <p class="step-desc">Personal information about the business owner.</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <mat-icon matPrefix>badge</mat-icon>
+            <input matInput formControlName="firstName" placeholder="e.g. Rajesh" />
+            @if (fieldError(ownerForm, 'firstName')) {
+            <mat-error>{{ fieldError(ownerForm, 'firstName') }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <mat-icon matPrefix>badge</mat-icon>
+            <input matInput formControlName="lastName" placeholder="e.g. Shrestha" />
+            @if (fieldError(ownerForm, 'lastName')) {
+            <mat-error>{{ fieldError(ownerForm, 'lastName') }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="col-full">
+            <mat-label>Date of Birth</mat-label>
+            <mat-icon matPrefix>cake</mat-icon>
+            <input matInput [matDatepicker]="dobPicker" formControlName="dob"
+              placeholder="MM/DD/YYYY" [max]="maxDob" readonly />
+            @if (!readonly()) {
+            <mat-datepicker-toggle matIconSuffix [for]="dobPicker"></mat-datepicker-toggle>
+            }
+            <mat-datepicker #dobPicker startView="multi-year"></mat-datepicker>
+            @if (fieldError(ownerForm, 'dob')) {
+            <mat-error>{{ fieldError(ownerForm, 'dob') }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Contact Number</mat-label>
+            <mat-icon matPrefix>phone_iphone</mat-icon>
+            <input matInput formControlName="contact" placeholder="+977-9841234567" />
+            @if (fieldError(ownerForm, 'contact')) {
+            <mat-error>{{ fieldError(ownerForm, 'contact') }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Email Address</mat-label>
+            <mat-icon matPrefix>alternate_email</mat-icon>
+            <input matInput formControlName="email" placeholder="owner@email.com" type="email" />
+            @if (fieldError(ownerForm, 'email')) {
+            <mat-error>{{ fieldError(ownerForm, 'email') }}</mat-error>
+            }
+          </mat-form-field>
+
+        </div>
+
+        <div class="step-actions">
+          <button mat-stroked-button type="button" matStepperPrevious>
+            <mat-icon>arrow_back</mat-icon>
+            Back
+          </button>
+          <button mat-flat-button color="primary" matStepperNext type="button"
+            [disabled]="!isReview() && ownerForm.invalid">
+            Next
+            <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- ── Step 3: Documents ─────────────────────────────────────────────── -->
+    <mat-step label="Documents">
+      <div class="step-form">
+
+        <div class="step-header">
+          <div class="step-icon">
+            <mat-icon>upload_file</mat-icon>
+          </div>
+          <div>
+            <h2 class="step-title">{{ isReview() ? 'Uploaded Documents' : 'Upload Documents' }}</h2>
+            <p class="step-desc">
+              {{ isReview()
+                ? 'Documents submitted with this application.'
+                : 'Upload the required business document and logo image.' }}
+            </p>
+          </div>
+        </div>
+
+        <!-- ── Review mode: show existing files as read-only ──────────────── -->
+        @if (isReview()) {
+        <div class="uploads-grid">
+
+          <div class="upload-card upload-card--done">
+            <div class="upload-card__header">
+              <div class="upload-icon"><mat-icon>description</mat-icon></div>
+              <div>
+                <h3 class="upload-label">Business Document</h3>
+                <p class="upload-hint">PDF or TXT file</p>
+              </div>
+            </div>
+            <div class="readonly-file">
+              <mat-icon class="file-type-icon">insert_drive_file</mat-icon>
+              <span class="file-name">{{ existingDocPath() || 'N/A' }}</span>
+              <mat-icon class="done-icon">check_circle</mat-icon>
+            </div>
+          </div>
+
+          <div class="upload-card upload-card--done">
+            <div class="upload-card__header">
+              <div class="upload-icon upload-icon--image"><mat-icon>image</mat-icon></div>
+              <div>
+                <h3 class="upload-label">Business Logo / Image</h3>
+                <p class="upload-hint">Image file</p>
+              </div>
+            </div>
+            <div class="readonly-file">
+              <mat-icon class="file-type-icon">image</mat-icon>
+              <span class="file-name">{{ existingImagePath() || 'N/A' }}</span>
+              <mat-icon class="done-icon">check_circle</mat-icon>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── Review actions ─────────────────────────────────────────────── -->
+        @if (auth.hasPermission('merchant.review')) {
+        <div class="review-actions-panel">
+          <div class="review-actions-label">
+            <mat-icon>gavel</mat-icon>
+            <span>Application Decision</span>
+          </div>
+          <div class="review-buttons">
+            <button mat-flat-button class="reject-btn" type="button" (click)="rejectApplication()">
+              <mat-icon>cancel</mat-icon>
+              Reject
+            </button>
+            <button mat-flat-button class="approve-btn" type="button" (click)="approveApplication()">
+              <mat-icon>check_circle</mat-icon>
+              Approve
+            </button>
+          </div>
+        </div>
+        }
+
+        <div class="step-actions">
+          <button mat-stroked-button type="button" matStepperPrevious>
+            <mat-icon>arrow_back</mat-icon>
+            Back
+          </button>
+          <button mat-stroked-button type="button" (click)="goBack()">
+            <mat-icon>list</mat-icon>
+            Back to List
+          </button>
+        </div>
+        }
+
+        <!-- ── Create / Edit mode: upload controls ────────────────────────── -->
+        @if (!isReview()) {
+        <div class="uploads-grid">
+
+          <!-- Document upload -->
+          <div class="upload-card"
+            [class.upload-card--done]="docDone() || (isEdit() && existingDocPath() && !docFile())"
+            [class.upload-card--error]="docError()">
+            <div class="upload-card__header">
+              <div class="upload-icon"><mat-icon>description</mat-icon></div>
+              <div>
+                <h3 class="upload-label">Business Document</h3>
+                <p class="upload-hint">PDF or TXT file only</p>
+              </div>
+            </div>
+
+            <!-- Existing file in edit mode -->
+            @if (isEdit() && existingDocPath() && !docFile()) {
+            <div class="file-info">
+              <mat-icon class="file-type-icon">insert_drive_file</mat-icon>
+              <div class="file-meta">
+                <span class="file-name">{{ existingDocPath() }}</span>
+                <span class="file-size">Current file</span>
+              </div>
+              <mat-icon class="done-icon">check_circle</mat-icon>
+            </div>
+            <div class="replace-hint">
+              <label class="replace-label" for="docInput">
+                <mat-icon>swap_horiz</mat-icon> Replace file
+                <input id="docInput" type="file" accept=".pdf,.txt" class="file-input" (change)="onDocSelected($event)" />
+              </label>
+            </div>
+            }
+
+            @if (!docFile() && !(isEdit() && existingDocPath())) {
+            <label class="drop-zone" for="docInputNew">
+              <mat-icon class="drop-icon">cloud_upload</mat-icon>
+              <span class="drop-text">Click to browse</span>
+              <span class="drop-sub">Accepted: .pdf, .txt</span>
+              <input id="docInputNew" type="file" accept=".pdf,.txt" class="file-input"
+                (change)="onDocSelected($event)" />
+            </label>
+            }
+
+            @if (docError()) {
+            <div class="upload-error">
+              <mat-icon>error_outline</mat-icon>{{ docError() }}
+            </div>
+            }
+
+            @if (docFile()) {
+            <div class="file-info">
+              <mat-icon class="file-type-icon">insert_drive_file</mat-icon>
+              <div class="file-meta">
+                <span class="file-name">{{ docFile()!.name }}</span>
+                <span class="file-size">{{ formatBytes(docFile()!.size) }}</span>
+              </div>
+              @if (!docDone()) { <span class="uploading-badge">Uploading…</span> }
+              @if (docDone())  { <mat-icon class="done-icon">check_circle</mat-icon> }
+              <button mat-icon-button type="button" class="remove-btn" (click)="removeDoc()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+            @if (!docDone()) {
+            <mat-progress-bar mode="determinate" [value]="docProgress()" class="upload-bar"></mat-progress-bar>
+            <span class="progress-label">{{ docProgress() }}%</span>
+            }
+            @if (docDone()) {
+            <div class="upload-success-label">
+              <mat-icon>check</mat-icon> Saved as <code>example.txt</code>
+            </div>
+            }
+            }
+          </div>
+
+          <!-- Image upload -->
+          <div class="upload-card"
+            [class.upload-card--done]="imageDone() || (isEdit() && existingImagePath() && !imageFile())"
+            [class.upload-card--error]="imageError()">
+            <div class="upload-card__header">
+              <div class="upload-icon upload-icon--image"><mat-icon>image</mat-icon></div>
+              <div>
+                <h3 class="upload-label">Business Logo / Image</h3>
+                <p class="upload-hint">Any image format · Max 5 MB</p>
+              </div>
+            </div>
+
+            <!-- Existing image in edit mode -->
+            @if (isEdit() && existingImagePath() && !imageFile()) {
+            <div class="file-info">
+              <mat-icon class="file-type-icon">image</mat-icon>
+              <div class="file-meta">
+                <span class="file-name">{{ existingImagePath() }}</span>
+                <span class="file-size">Current file</span>
+              </div>
+              <mat-icon class="done-icon">check_circle</mat-icon>
+            </div>
+            <div class="replace-hint">
+              <label class="replace-label" for="imageInput">
+                <mat-icon>swap_horiz</mat-icon> Replace image
+                <input id="imageInput" type="file" accept="image/*" class="file-input" (change)="onImageSelected($event)" />
+              </label>
+            </div>
+            }
+
+            @if (!imageFile() && !(isEdit() && existingImagePath())) {
+            <label class="drop-zone" for="imageInputNew">
+              <mat-icon class="drop-icon">add_photo_alternate</mat-icon>
+              <span class="drop-text">Click to browse</span>
+              <span class="drop-sub">JPG, PNG, SVG, WebP… (max 5 MB)</span>
+              <input id="imageInputNew" type="file" accept="image/*" class="file-input"
+                (change)="onImageSelected($event)" />
+            </label>
+            }
+
+            @if (imageError()) {
+            <div class="upload-error">
+              <mat-icon>error_outline</mat-icon>{{ imageError() }}
+            </div>
+            }
+
+            @if (imageFile()) {
+            @if (imagePreview()) {
+            <div class="image-preview-wrap">
+              <img [src]="imagePreview()" alt="Preview" class="image-preview" />
+              @if (imageDone()) {
+              <div class="preview-overlay"><mat-icon>check_circle</mat-icon></div>
+              }
+            </div>
+            }
+            <div class="file-info">
+              <mat-icon class="file-type-icon">image</mat-icon>
+              <div class="file-meta">
+                <span class="file-name">{{ imageFile()!.name }}</span>
+                <span class="file-size">{{ formatBytes(imageFile()!.size) }}</span>
+              </div>
+              @if (!imageDone()) { <span class="uploading-badge">Uploading…</span> }
+              @if (imageDone())  { <mat-icon class="done-icon">check_circle</mat-icon> }
+              <button mat-icon-button type="button" class="remove-btn" (click)="removeImage()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+            @if (!imageDone()) {
+            <mat-progress-bar mode="determinate" [value]="imageProgress()" class="upload-bar"></mat-progress-bar>
+            <span class="progress-label">{{ imageProgress() }}%</span>
+            }
+            @if (imageDone()) {
+            <div class="upload-success-label">
+              <mat-icon>check</mat-icon> Saved as <code>example.png</code>
+            </div>
+            }
+            }
+          </div>
+
+        </div>
+
+        @if (!uploadsValid) {
+        <div class="upload-notice">
+          <mat-icon>info</mat-icon>
+          Both files must finish uploading before you can submit.
+        </div>
+        }
+
+        <div class="step-actions">
+          <button mat-stroked-button type="button" matStepperPrevious>
+            <mat-icon>arrow_back</mat-icon>
+            Back
+          </button>
+          <button mat-flat-button color="primary" type="button"
+            [disabled]="!uploadsValid" (click)="submit()">
+            <mat-icon>{{ isEdit() ? 'save' : 'send' }}</mat-icon>
+            {{ isEdit() ? 'Update Application' : 'Submit Application' }}
+          </button>
+        </div>
+        }
+
+      </div>
+    </mat-step>
+
+  </mat-stepper>
+  }
+
+</div>

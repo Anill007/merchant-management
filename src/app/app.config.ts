@@ -4,6 +4,8 @@ import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './core/auth/auth.interceptor';
 import { AuthService } from './core/auth/auth.service';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,6 +14,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([authInterceptor])
     ),
-    provideAppInitializer(() => inject(AuthService).initialize())
+    provideAppInitializer(() => inject(AuthService).initialize()),
+    provideAnimationsAsync(),
+    provideNativeDateAdapter(),
   ]
 };
