@@ -59,7 +59,6 @@ export class ApplicationReview implements AfterViewInit {
   statuses = [
     'ALL',
     'UNASSIGNED',
-    'PENDING',
     'APPROVED',
     'REJECTED',
     'UNDER_REVIEW',
