@@ -267,6 +267,15 @@ mat-paginator {
     font-size: 12px;
 }
 
+.status-unassigned {
+    background-color: #f3f4f6;
+    color: #4b5563;
+}
+
+.status-unassigned .status-dot {
+    background-color: #9ca3af;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
     .applications-page {

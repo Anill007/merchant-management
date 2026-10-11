@@ -104,10 +104,15 @@
                     </th>
 
                     <td mat-cell *matCellDef="let application">
-                        <span class="status-badge" [ngClass]="'status-' + application.status.toLowerCase()">
+                        <span class="status-badge" [ngClass]="'status-' + (application.reviewer === null
+                ? 'unassigned'
+                : application.status.toLowerCase())">
 
                             <span class="status-dot"></span>
-                            {{ application.status.replace('_', ' ') }}
+
+                            {{ application.reviewer === null
+                            ? 'UNASSIGNED'
+                            : application.status.replace('_', ' ') }}
                         </span>
                     </td>
                 </ng-container>

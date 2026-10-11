@@ -22,11 +22,17 @@ const rolePermissions = {
 		"merchant.create",
 		"merchant.update",
 		"merchant.delete",
+		"merchant.review"
 	],
 	reviewer: [
 		"merchant.read",
-		"merchant.update",
+		"merchant.review"
 	],
+	sales: [
+		"merchant.create",
+		"merchant.update",
+		"merchant.delete"
+	]
 };
 
 // Two predefined users; no database or signup.
@@ -44,6 +50,27 @@ const users = [
 		email: "reviewer@test.com",
 		password: "reviewer1",
 		role: "reviewer",
+	},
+	{
+		id: 3,
+		name: "reviewer 2",
+		email: "reviewer2@test.com",
+		password: "reviewer2",
+		role: "reviewer",
+	},
+	{
+		id: 4,
+		name: "sales 1",
+		email: "sales1@test.com",
+		password: "sales1",
+		role: "sales",
+	},
+	{
+		id: 5,
+		name: "sales 2",
+		email: "sales2@test.com",
+		password: "sales2",
+		role: "sales",
 	},
 ];
 

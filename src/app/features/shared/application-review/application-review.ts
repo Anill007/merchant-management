@@ -21,14 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { applications } from '../../../mock-data/app-mock';
 import { AuthService } from '../../../core/auth/auth.service';
-
-export interface MerchantApplication {
-  id: string;
-  name: string;
-  email: string;
-  status: string;
-  address: string;
-}
+import { MerchantApplication } from './application-review.model';
 
 @Component({
   selector: 'app-merchant-applications',
@@ -65,6 +58,7 @@ export class ApplicationReview implements AfterViewInit {
 
   statuses = [
     'ALL',
+    'UNASSIGNED',
     'PENDING',
     'APPROVED',
     'REJECTED',
@@ -98,17 +92,22 @@ export class ApplicationReview implements AfterViewInit {
         application.email,
         application.status,
         application.address,
-      ]
-        .join(' ')
-        .toLowerCase();
+      ].join(' ').toLowerCase();
 
-      const matchesSearch = searchableText.includes(
-        criteria.search
-      );
+      const matchesSearch = searchableText.includes(criteria.search);
 
-      const matchesStatus =
-        criteria.status === 'ALL' ||
-        application.status === criteria.status;
+      let matchesStatus = true;
+
+      if (criteria.status === 'UNASSIGNED') {
+        matchesStatus = application.reviewer === null;
+      } else if (criteria.status === 'ALL') {
+        matchesStatus = true;
+      } else {
+        // Only match the actual application status.
+        matchesStatus =
+          application.status === criteria.status &&
+          application.reviewer !== null;
+      }
 
       return matchesSearch && matchesStatus;
     };
@@ -116,6 +115,10 @@ export class ApplicationReview implements AfterViewInit {
     this.dataSource.sortingDataAccessor = (application, property) => {
       const value =
         application[property as keyof MerchantApplication];
+
+      if (value == null) {
+        return '';
+      }
 
       return typeof value === 'string'
         ? value.toLowerCase()
