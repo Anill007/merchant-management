@@ -47,7 +47,7 @@ const users = [
 	{
 		id: 2,
 		name: "reviewer 1",
-		email: "reviewer@test.com",
+		email: "reviewer1@test.com",
 		password: "reviewer1",
 		role: "reviewer",
 	},

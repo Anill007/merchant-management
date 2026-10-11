@@ -65,13 +65,33 @@ export class ApplicationReview implements AfterViewInit {
     'UNDER_REVIEW',
   ];
 
-  applications = applications;
   public auth = inject(AuthService);
 
+  applications = this.getApplicationsForCurrentUser();
 
   dataSource = new MatTableDataSource<MerchantApplication>(
     this.applications
   );
+
+  private getApplicationsForCurrentUser(): MerchantApplication[] {
+    const user = this.auth.currentUser;
+
+    if (!user) {
+      return [];
+    }
+
+    switch (user.role) {
+      case 'sales':
+        return applications.filter(app => app.createdBy === user.id);
+
+      case 'reviewer':
+        return applications.filter(app => app.reviewer === user.id);
+
+      case 'admin':
+      default:
+        return [...applications];
+    }
+  }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
