@@ -166,6 +166,14 @@
 
             <ng-template matMenuContent let-application="application">
 
+                @if (auth.hasPermission('merchant.review')) {
+                <button mat-menu-item type="button" (click)="reviewApplication(application)">
+
+                    <mat-icon class="review-icon">file_open</mat-icon>
+                    <span>Review application</span>
+                </button>
+                }
+
                 @if (auth.hasPermission('merchant.update')) {
                 <button mat-menu-item type="button" (click)="editApplication(application)">
 

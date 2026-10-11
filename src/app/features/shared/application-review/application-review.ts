@@ -158,6 +158,14 @@ export class ApplicationReview implements AfterViewInit {
     ]);
   }
 
+  reviewApplication(application: MerchantApplication): void {
+    this.router.navigate([
+      '/merchant-applications',
+      application.id,
+      'review',
+    ]);
+  }
+
   deleteApplication(application: MerchantApplication): void {
     const confirmed = window.confirm(
       `Are you sure you want to delete "${application.name}"?`

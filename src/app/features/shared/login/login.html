@@ -16,7 +16,7 @@
                 <label for="email">Email address</label>
 
                 <input id="email" type="email" name="email" [(ngModel)]="email" placeholder="Enter your email"
-                    autocomplete="username" required email [disabled]="loading" #emailInput="ngModel" />
+                    autocomplete="username" required email [disabled]="loading()" #emailInput="ngModel" />
 
                 @if (emailInput.invalid && emailInput.touched) {
                 <small class="field-error">
@@ -29,7 +29,7 @@
                 <label for="password">Password</label>
 
                 <input id="password" type="password" name="password" [(ngModel)]="password"
-                    placeholder="Enter your password" autocomplete="current-password" required [disabled]="loading"
+                    placeholder="Enter your password" autocomplete="current-password" required [disabled]="loading()"
                     #passwordInput="ngModel" />
 
                 @if (passwordInput.invalid && passwordInput.touched) {
@@ -45,8 +45,8 @@
             </div>
             }
 
-            <button type="submit" class="login-button" [disabled]="loading || loginForm.invalid">
-                @if (loading) {
+            <button type="submit" class="login-button" [disabled]="loading() || loginForm.invalid">
+                @if (loading()) {
                 <span class="spinner"></span>
                 Signing in...
                 } @else {
@@ -62,4 +62,3 @@
 
     </div>
 </div>
-```
