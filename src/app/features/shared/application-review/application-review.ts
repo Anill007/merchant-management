@@ -2,6 +2,7 @@
 import {
   AfterViewInit,
   Component,
+  inject,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,6 +20,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { applications } from '../../../mock-data/app-mock';
+import { AuthService } from '../../../core/auth/auth.service';
 
 export interface MerchantApplication {
   id: string;
@@ -70,6 +72,8 @@ export class ApplicationReview implements AfterViewInit {
   ];
 
   applications = applications;
+  public auth = inject(AuthService);
+
 
   dataSource = new MatTableDataSource<MerchantApplication>(
     this.applications

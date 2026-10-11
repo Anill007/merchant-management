@@ -2,7 +2,6 @@
 
     <header class="page-header">
         <div>
-            <h1>Merchant Applications</h1>
             <p>Manage and review merchant registration requests.</p>
         </div>
 
@@ -162,17 +161,20 @@
 
             <ng-template matMenuContent let-application="application">
 
+                @if (auth.hasPermission('merchant.update')) {
                 <button mat-menu-item type="button" (click)="editApplication(application)">
 
                     <mat-icon class="edit-icon">edit</mat-icon>
                     <span>Edit application</span>
                 </button>
+                }
 
+                @if (auth.hasPermission('merchant.delete')) {
                 <button mat-menu-item type="button" class="delete-menu-item" (click)="deleteApplication(application)">
-
                     <mat-icon class="delete-icon">delete_outline</mat-icon>
                     <span>Delete application</span>
                 </button>
+                }
 
             </ng-template>
         </mat-menu>
