@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/auth/auth.guard';
 
 export const routes: Routes = [
     {
@@ -7,7 +8,13 @@ export const routes: Routes = [
         pathMatch: 'full'
     },
     {
+        path: 'login',
+        loadComponent: () => import('./features/shared/login/login')
+            .then(m => m.Login),
+    },
+    {
         path: 'application-review',
+        canActivate: [authGuard],
         loadComponent: () => import('./features/shared/application-review/application-review')
             .then(m => m.ApplicationReview),
     },
