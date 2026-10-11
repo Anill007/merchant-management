@@ -1,1 +1,186 @@
-<p>application-review works!</p>
+<div class="applications-page">
+
+    <header class="page-header">
+        <div>
+            <h1>Merchant Applications</h1>
+            <p>Manage and review merchant registration requests.</p>
+        </div>
+
+        <span class="total-badge">
+            {{ applications.length }} applications
+        </span>
+    </header>
+
+    <section class="table-card">
+
+        <!-- Search and filters -->
+        <div class="filter-panel">
+
+            <mat-form-field appearance="outline" class="search-field">
+                <mat-label>Search applications</mat-label>
+
+                <mat-icon matPrefix>search</mat-icon>
+
+                <input matInput [(ngModel)]="searchText" (ngModelChange)="applyFilters()"
+                    placeholder="Search ID, name, email..." />
+
+                @if (searchText) {
+                <button matSuffix mat-icon-button type="button" aria-label="Clear search"
+                    (click)="searchText = ''; applyFilters()">
+                    <mat-icon>close</mat-icon>
+                </button>
+                }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="status-field">
+                <mat-label>Application status</mat-label>
+
+                <mat-select [(ngModel)]="selectedStatus" (selectionChange)="applyFilters()">
+
+                    @for (status of statuses; track status) {
+                    <mat-option [value]="status">
+                        {{ status === 'ALL' ? 'All statuses' : status.replace('_', ' ') }}
+                    </mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button type="button" class="reset-button" (click)="clearFilters()">
+                <mat-icon>restart_alt</mat-icon>
+                Reset
+            </button>
+
+        </div>
+
+        <div class="results-info">
+            Showing <strong>{{ filteredApplications }}</strong>
+            of {{ applications.length }} applications
+        </div>
+
+        <!-- Table -->
+        <div class="table-container">
+            <table mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="asc">
+
+                <!-- ID -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Application ID
+                    </th>
+
+                    <td mat-cell *matCellDef="let application">
+                        <span class="application-id">
+                            {{ application.id }}
+                        </span>
+                    </td>
+                </ng-container>
+
+                <!-- Name -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Merchant
+                    </th>
+
+                    <td mat-cell *matCellDef="let application">
+                        <span class="merchant-name">
+                            {{ application.name }}
+                        </span>
+                    </td>
+                </ng-container>
+
+                <!-- Email -->
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Email
+                    </th>
+
+                    <td mat-cell *matCellDef="let application">
+                        {{ application.email }}
+                    </td>
+                </ng-container>
+
+                <!-- Status -->
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Status
+                    </th>
+
+                    <td mat-cell *matCellDef="let application">
+                        <span class="status-badge" [ngClass]="'status-' + application.status.toLowerCase()">
+
+                            <span class="status-dot"></span>
+                            {{ application.status.replace('_', ' ') }}
+                        </span>
+                    </td>
+                </ng-container>
+
+                <!-- Address -->
+                <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Address
+                    </th>
+
+                    <td mat-cell *matCellDef="let application">
+                        {{ application.address }}
+                    </td>
+                </ng-container>
+
+                <!-- Actions -->
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef class="actions-header">
+                        Actions
+                    </th>
+
+                    <td mat-cell *matCellDef="let application" class="actions-cell">
+                        <button mat-icon-button type="button" class="action-trigger" [matMenuTriggerFor]="actionMenu"
+                            [matMenuTriggerData]="{ application: application }" aria-label="Open application actions">
+
+                            <mat-icon>more_horiz</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns">
+                </tr>
+
+                <tr mat-row *matRowDef="let row; columns: displayedColumns">
+                </tr>
+
+                <tr *matNoDataRow>
+                    <td class="empty-state" [attr.colspan]="displayedColumns.length">
+
+                        <mat-icon>search_off</mat-icon>
+                        <p>No applications found</p>
+                        <span>Try changing your search or status filter.</span>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+        <!-- Row action menu -->
+        <mat-menu #actionMenu="matMenu" xPosition="before" class="application-action-menu">
+
+            <ng-template matMenuContent let-application="application">
+
+                <button mat-menu-item type="button" (click)="editApplication(application)">
+
+                    <mat-icon class="edit-icon">edit</mat-icon>
+                    <span>Edit application</span>
+                </button>
+
+                <button mat-menu-item type="button" class="delete-menu-item" (click)="deleteApplication(application)">
+
+                    <mat-icon class="delete-icon">delete_outline</mat-icon>
+                    <span>Delete application</span>
+                </button>
+
+            </ng-template>
+        </mat-menu>
+
+        <!-- Pagination -->
+        <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons
+            aria-label="Merchant applications pagination">
+        </mat-paginator>
+
+    </section>
+</div>
